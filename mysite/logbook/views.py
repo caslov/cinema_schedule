@@ -10,30 +10,30 @@ from .models import (Movie,
 class MovieCreate(CreateView):
     model = Movie
     fields = ["name", "year", "stars", "descriptions", "pictures"]
-    template_name = 'movie_create.html'
+    template_name = 'movie/movie_create.html'
 
 
 class MovieList(ListView):
     model = Movie
-    template_name = 'movie_list.html'
+    template_name = 'movie/movie_list.html'
 
 
 class MovieDetail(DetailView):
     model = Movie
     queryset = Movie.objects
-    template_name = 'movie_detail.html'
+    template_name = 'movie/movie_detail.html'
 
 
 class MovieUpdate(UpdateView):
     model = Movie
     fields = ["name", "year", "stars", "descriptions", "pictures"]
-    template_name = 'movie_update.html'
+    template_name = 'movie/movie_update.html'
 
 
 class MovieDelete(DeleteView):
     model = Movie
     success_url = "/"
-    template_name = 'movie_delete.html'
+    template_name = 'movie/movie_delete.html'
 
 
 # CinemaUser
