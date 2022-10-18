@@ -1,22 +1,8 @@
 from django.db import models
-
-# Create your models here.
-from django.db import models
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.contrib.auth.models import User
-
-class Cinema(models.Model):
-    name = models.CharField(max_length=30)
-    descriptions = models.TextField(max_length=800)
-    city = models.CharField(max_length=50)
-    address = models.CharField(max_length=60)
-
-
-class Hall(models.Model):
-    room = models.IntegerField()
-    cinema_id = models.ForeignKey(Cinema, on_delete=models.CASCADE)
-    seats = models.IntegerField()
-    volume = models.CharField(max_length=3)
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 
 class Movie(models.Model):
@@ -26,6 +12,35 @@ class Movie(models.Model):
     descriptions = models.TextField(max_length=800)
     pictures = models.TextField(max_length=800)
 
+    def __str__(self):
+        return f"Name: {self.name}"
+
+
+class Cinema(models.Model):
+    name = models.CharField(max_length=30)
+    descriptions = models.TextField(max_length=800)
+    city = models.CharField(max_length=50)
+    address = models.CharField(max_length=60)
+
+    def __str__(self):
+        return f"Name: {self.name}"
+
+class CinemaUser(models.Model):
+    cinema_id = models.ForeignKey(Cinema, on_delete=models.CASCADE)
+    user_id = models.ForeignKey(User, on_delete=models.CASCADE)
+
+#class Admin(models.Model):
+#    user = models.OneToOneField(User, on_delete=models.CASCADE)
+#    role = models.CharField(max_length=20, default="administrator")
+#    cinema_id = models.ForeignKey(Cinema, on_delete=models.CASCADE)
+
+
+class Hall(models.Model):
+    room = models.IntegerField()
+    cinema_id = models.ForeignKey(Cinema, on_delete=models.CASCADE)
+    seats = models.IntegerField()
+    volume = models.CharField(max_length=3)
+
 
 class Session(models.Model):
     movie_id = models.ForeignKey(Movie, on_delete=models.CASCADE)
@@ -33,9 +48,3 @@ class Session(models.Model):
     price = models.IntegerField()
     time_start = models.DateTimeField()
     time_end = models.DateTimeField()
-
-
-class Admin(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    role = models.CharField(max_length=20, default="administrator")
-    cinema_id = models.ForeignKey(Cinema, on_delete=models.CASCADE)

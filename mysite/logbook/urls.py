@@ -15,6 +15,23 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from .views import (
+    MovieListView,
+    Movie,
+    create_movie,
+    CinemaListView,
+    Cinema,
+    create_сinema,
+    get_all_hall,
+    get_hall_by_id,
+    create_hall,
+    get_all_Session,
+    get_Session_by_id,
+    create_Session
+                    )
 
 urlpatterns = [
+    path('movies/', get_all_Session),
+    path('movies/<int:pk>', get_Session_by_id),
+    path('movies/create/', create_Session)
 ]
