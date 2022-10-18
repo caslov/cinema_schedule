@@ -4,17 +4,21 @@ from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import TemplateView
 from django.http import Http404, HttpResponseRedirect
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, CreateView
+
 
 from .models import (Movie,
                      Cinema,
                      Hall,
-                     Session)
+                     Session,
+                     CinemaUser)
+
 
 from .forms import (MovieForm,
                     CinemaForm,
                     HallForm,
-                    SessionForm)
+                    SessionForm,
+                    CinemaUserForm)
 
 
 # Movie
@@ -29,21 +33,41 @@ class Movie(DetailView):
     queryset = Movie.objects
 
 
-def create_movie(request):
+class MovieCreate(CreateView):
+    model = MovieForm
+    fields = ["name", "year", "stars", "descriptions", "pictures"]
+
+
+
+
+
+# CinemaUser
+class CinemaUserListView(ListView):
+    model = CinemaUser
+    template_name = 'list_cinema_user.html.html'
+
+
+class CinemaUser(DetailView):
+    model = Cinema
+    template_name = 'cinema_user.html.html'
+    queryset = CinemaUser.objects
+
+
+def create_cinema_user(request):
     if request.method == "POST":
-        form = MovieForm(request.POST)
+        form = CinemaUserForm(request.POST)
         if form.is_valid():
-            movie = form.save(commit=False)
-            movie.user = request.user
-            movie.save()
-    form = MovieForm()
-    return render(request, 'dashboard.html', {'form': form})
+            cinema = form.save(commit=False)
+            cinema.user = request.user
+            cinema.save()
+    form = CinemaUserForm()
+    return render(request, 'create_cinema_user.html', {'form': form})
 
 
 # Cinema
 class CinemaListView(ListView):
     model = Cinema
-    template_name = 'сinems.html'
+    template_name = 'cinema.html'
 
 
 class Cinema(DetailView):
@@ -60,7 +84,7 @@ def create_сinema(request):
             cinema.user = request.user
             cinema.save()
     form = CinemaForm()
-    return render(request, 'dashboard.html', {'form': form})
+    return render(request, '.html', {'form': form})
 
 
 

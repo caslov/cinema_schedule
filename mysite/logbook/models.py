@@ -29,11 +29,6 @@ class CinemaUser(models.Model):
     cinema_id = models.ForeignKey(Cinema, on_delete=models.CASCADE)
     user_id = models.ForeignKey(User, on_delete=models.CASCADE)
 
-#class Admin(models.Model):
-#    user = models.OneToOneField(User, on_delete=models.CASCADE)
-#    role = models.CharField(max_length=20, default="administrator")
-#    cinema_id = models.ForeignKey(Cinema, on_delete=models.CASCADE)
-
 
 class Hall(models.Model):
     room = models.IntegerField()

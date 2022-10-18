@@ -4,7 +4,8 @@ from django.contrib.auth.models import User
 from .models import (Movie,
                      Cinema,
                      Hall,
-                     Session)
+                     Session,
+                     CinemaUser)
 
 
 # Movie:
@@ -34,8 +35,14 @@ class CinemaForm(forms.Form):
         cinema = Cinema
         fields = ("name", "year", "stars", "descriptions", "pictures")
 
+#CinemaUser
+# cinema_id
+# user_id
 
-
+class CinemaUserForm(forms.Form):
+    class Meta:
+        cinema_user = CinemaUser
+        fields = ("cinema_id", "user_id")
 # Admin:
 #  user
 #  role
@@ -46,6 +53,8 @@ class CinemaForm(forms.Form):
 #    class Meta:
 #        cinema = Admin
 #        fields = ["name"]
+
+
 
 
 class UserForm(forms.ModelForm):
