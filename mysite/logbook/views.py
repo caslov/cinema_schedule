@@ -10,7 +10,7 @@ from .models import (Movie,
 class MovieCreate(CreateView):
     model = Movie
     fields = ["name", "year", "stars", "descriptions", "pictures"]
-    template_name = 'movie/movie_create.html'
+    template_name = 'movie_create.html'
 
 
 class MovieList(ListView):
