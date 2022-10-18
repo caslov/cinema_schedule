@@ -1,11 +1,4 @@
-from django.http import HttpResponse
-from django.shortcuts import render, get_object_or_404, redirect
-from django.contrib.auth import login, authenticate, logout
-from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import TemplateView
-from django.http import Http404, HttpResponseRedirect
-from django.views.generic import ListView, DetailView, CreateView
-
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
 from .models import (Movie,
                      Cinema,
@@ -13,126 +6,151 @@ from .models import (Movie,
                      Session,
                      CinemaUser)
 
-
-from .forms import (MovieForm,
-                    CinemaForm,
-                    HallForm,
-                    SessionForm,
-                    CinemaUserForm)
-
-
 # Movie
-class MovieListView(ListView):
-    model = Movie
-    template_name = 'movies.html'
-
-
-class Movie(DetailView):
-    model = Movie
-    template_name = 'movie.html'
-    queryset = Movie.objects
-
-
 class MovieCreate(CreateView):
-    model = MovieForm
+    model = Movie
     fields = ["name", "year", "stars", "descriptions", "pictures"]
+    template_name = 'movie_create.html'
 
 
+class MovieList(ListView):
+    model = Movie
+    template_name = 'movie_list.html'
 
+
+class MovieDetail(DetailView):
+    model = Movie
+    queryset = Movie.objects
+    template_name = 'movie_detail.html'
+
+
+class MovieUpdate(UpdateView):
+    model = Movie
+    fields = ["name", "year", "stars", "descriptions", "pictures"]
+    template_name = 'movie_update.html'
+
+
+class MovieDelete(DeleteView):
+    model = Movie
+    success_url = "/"
+    template_name = 'movie_delete.html'
 
 
 # CinemaUser
-class CinemaUserListView(ListView):
+class CinemaUserCreate(CreateView):
     model = CinemaUser
-    template_name = 'list_cinema_user.html.html'
+    fields = ["cinema_id", "user_id"]
+    template_name = 'cinema_user_create.html'
 
 
-class CinemaUser(DetailView):
-    model = Cinema
-    template_name = 'cinema_user.html.html'
+class CinemaUserList(ListView):
+    model = CinemaUser
+    template_name = 'cinema_user_list.html'
+
+
+class CinemaUserDetail(DetailView):
+    model = CinemaUser
     queryset = CinemaUser.objects
+    template_name = 'cinema_user_detail.html'
 
 
-def create_cinema_user(request):
-    if request.method == "POST":
-        form = CinemaUserForm(request.POST)
-        if form.is_valid():
-            cinema = form.save(commit=False)
-            cinema.user = request.user
-            cinema.save()
-    form = CinemaUserForm()
-    return render(request, 'create_cinema_user.html', {'form': form})
+class CinemaUserUpdate(UpdateView):
+    model = CinemaUser
+    fields = ["cinema_id", "user_id"]
+    template_name = 'cinema_user_update.html'
+
+
+class CinemaUserDelete(DeleteView):
+    model = CinemaUser
+    success_url = "/"
+    template_name = 'cinema_user_delete.html'
 
 
 # Cinema
-class CinemaListView(ListView):
+class CinemaCreate(CreateView):
     model = Cinema
-    template_name = 'cinema.html'
+    fields = ["name", "descriptions", "city", "address"]
+    template_name = 'cinema_create.html'
 
 
-class Cinema(DetailView):
+class CinemaList(ListView):
     model = Cinema
-    template_name = 'cinemas.html'
+    template_name = 'cinema_list.html'
+
+
+class CinemaDetail(DetailView):
+    model = Cinema
     queryset = Cinema.objects
+    template_name = 'cinema_detail.html'
 
 
-def create_сinema(request):
-    if request.method == "POST":
-        form = CinemaForm(request.POST)
-        if form.is_valid():
-            cinema = form.save(commit=False)
-            cinema.user = request.user
-            cinema.save()
-    form = CinemaForm()
-    return render(request, '.html', {'form': form})
+class CinemaUpdate(UpdateView):
+    model = Cinema
+    fields = ["name", "descriptions", "city", "address"]
+    template_name = 'cinema_update.html'
 
 
+class CinemaDelete(DeleteView):
+    model = Cinema
+    success_url = "/"
+    template_name = 'cinema_delete.html'
 
 
 # Hall
-def get_all_hall(request):
-    all_hall = Hall.objects.all()
-    return HttpResponse(all_hall)
+class HallCreate(CreateView):
+    model = Hall
+    fields = ["room", "cinema_id", "seats", "volume"]
+    template_name = 'hill_create.html'
 
 
-def get_hall_by_id(request, id):
-    return get_object_or_404(Hall, pk=id)
+class HallList(ListView):
+    model = Hall
+    template_name = 'hill_list.html'
 
 
-def create_hall(requst):
-    form = HallForm(requst.POST)
-    if form.is_valid():
-        try:
-            st = Hall.objects.create(
-                room=form.cleaned_data['room'],
-                cinema_id=form.cleaned_data['cinema_id'],
-                seats=form.cleaned_data['seats'],
-            )
-        except: pass
-    return get_object_or_404(st)
+class HallDetail(DetailView):
+    model = Hall
+    queryset = Hall.objects
+    template_name = 'hill_detail.html'
+
+
+class HallUpdate(UpdateView):
+    model = Hall
+    fields = ["room", "cinema_id", "seats", "volume"]
+    template_name = 'hill_update.html'
+
+
+class HallDelete(DeleteView):
+    model = Hall
+    success_url = "/"
+    template_name = 'hill_delete.html'
 
 
 # Session
-def get_all_Session(request):
-    all_Session = Session.objects.all()
-    return HttpResponse(all_Session)
+class SessionCreate(CreateView):
+    model = Session
+    fields = ["movie_id", "hall_id", "price", "time_start", "time_end"]
+    template_name = 'session_create.html'
 
 
-def get_Session_by_id(request, id):
-    return get_object_or_404(Session, pk=id)
+class SessionList(ListView):
+    model = Session
+    template_name = 'session_list.html'
 
 
-def create_Session(requst):
-    form = SessionForm(requst.POST)
-    if form.is_valid():
-        try:
-            st = Session.objects.create(
-                movie_id=form.cleaned_data['movie_id'],
-                hall_id=form.cleaned_data['hall_id'],
-                price=form.cleaned_data['price'],
-                time_start=form.cleaned_data['time_start'],
-                time_end=form.cleaned_data['time_end'],
-            )
-        except: pass
-    return get_object_or_404(st)
+class SessionDetail(DetailView):
+    model = Session
+    queryset = Session.objects
+    template_name = 'session_detail.html'
 
+
+class SessionUpdate(UpdateView):
+    model = Session
+    fields = ["movie_id", "hall_id", "price", "time_start", "time_end"]
+    template_name = 'session_update.html'
+
+
+class SessionDelete(DeleteView):
+    model = Session
+    success_url = "/"
+    template_name = 'session_delete.html'

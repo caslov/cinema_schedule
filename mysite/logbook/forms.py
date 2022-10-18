@@ -33,7 +33,7 @@ class MovieForm(forms.Form):
 class CinemaForm(forms.Form):
     class Meta:
         cinema = Cinema
-        fields = ("name", "year", "stars", "descriptions", "pictures")
+        fields = ("name", "descriptions", "city", "address")
 
 #CinemaUser
 # cinema_id
@@ -43,17 +43,6 @@ class CinemaUserForm(forms.Form):
     class Meta:
         cinema_user = CinemaUser
         fields = ("cinema_id", "user_id")
-# Admin:
-#  user
-#  role
-#  cinema_id
-
-
-#class AdminForm(ModelForm):
-#    class Meta:
-#        cinema = Admin
-#        fields = ["name"]
-
 
 
 
