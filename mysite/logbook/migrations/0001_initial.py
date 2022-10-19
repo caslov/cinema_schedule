@@ -14,7 +14,7 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Cinema',
+            name='cinema',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('name', models.CharField(max_length=30)),
@@ -24,7 +24,7 @@ class Migration(migrations.Migration):
             ],
         ),
         migrations.CreateModel(
-            name='Hall',
+            name='hill',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('room', models.IntegerField()),
@@ -51,7 +51,7 @@ class Migration(migrations.Migration):
                 ('price', models.IntegerField()),
                 ('time_start', models.DateTimeField()),
                 ('time_end', models.DateTimeField()),
-                ('hall_id', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='logbook.hall')),
+                ('hall_id', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='logbook.hill')),
                 ('movie_id', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='logbook.movie')),
             ],
         ),

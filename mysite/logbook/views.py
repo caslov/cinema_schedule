@@ -9,7 +9,7 @@ from .models import (Movie,
 # Movie
 class MovieCreate(CreateView):
     model = Movie
-    fields = ["name", "year", "stars", "descriptions", "pictures"]
+    fields = ["name", "year", "stars", "descriptions"]
     template_name = 'movie/movie_create.html'
 
 
@@ -26,131 +26,131 @@ class MovieDetail(DetailView):
 
 class MovieUpdate(UpdateView):
     model = Movie
-    fields = ["name", "year", "stars", "descriptions", "pictures"]
+    fields = ["name", "year", "stars", "descriptions"]
     template_name = 'movie/movie_update.html'
 
 
 class MovieDelete(DeleteView):
     model = Movie
-    success_url = "/"
+    success_url = "main/movie/list/"
     template_name = 'movie/movie_delete.html'
 
 
-# CinemaUser
+# cinemaUser
 class CinemaUserCreate(CreateView):
     model = CinemaUser
     fields = ["cinema_id", "user_id"]
-    template_name = 'cinema_user_create.html'
+    template_name = 'cinemaUser/cinema_user_create.html'
 
 
 class CinemaUserList(ListView):
     model = CinemaUser
-    template_name = 'cinema_user_list.html'
+    template_name = 'cinemaUser/cinema_user_list.html'
 
 
 class CinemaUserDetail(DetailView):
     model = CinemaUser
     queryset = CinemaUser.objects
-    template_name = 'cinema_user_detail.html'
+    template_name = 'cinemaUser/cinema_user_detail.html'
 
 
 class CinemaUserUpdate(UpdateView):
     model = CinemaUser
     fields = ["cinema_id", "user_id"]
-    template_name = 'cinema_user_update.html'
+    template_name = 'cinemaUser/cinema_user_update.html'
 
 
 class CinemaUserDelete(DeleteView):
     model = CinemaUser
-    success_url = "/"
-    template_name = 'cinema_user_delete.html'
+    success_url = "cinemaUser/list/"
+    template_name = 'cinemaUser/cinema_user_delete.html'
 
 
-# Cinema
+# cinema
 class CinemaCreate(CreateView):
     model = Cinema
     fields = ["name", "descriptions", "city", "address"]
-    template_name = 'cinema_create.html'
+    template_name = 'cinema/cinema_create.html'
 
 
 class CinemaList(ListView):
     model = Cinema
-    template_name = 'cinema_list.html'
+    template_name = 'cinema/cinema_list.html'
 
 
 class CinemaDetail(DetailView):
     model = Cinema
     queryset = Cinema.objects
-    template_name = 'cinema_detail.html'
+    template_name = 'cinema/cinema_detail.html'
 
 
 class CinemaUpdate(UpdateView):
     model = Cinema
     fields = ["name", "descriptions", "city", "address"]
-    template_name = 'cinema_update.html'
+    template_name = 'cinema/cinema_update.html'
 
 
 class CinemaDelete(DeleteView):
     model = Cinema
-    success_url = "/"
-    template_name = 'cinema_delete.html'
+    success_url = "cinema/list/"
+    template_name = 'cinema/cinema_delete.html'
 
 
-# Hall
+# hill
 class HallCreate(CreateView):
     model = Hall
     fields = ["room", "cinema_id", "seats", "volume"]
-    template_name = 'hill_create.html'
+    template_name = 'hill/hill_create.html'
 
 
 class HallList(ListView):
     model = Hall
-    template_name = 'hill_list.html'
+    template_name = 'hill/hill_list.html'
 
 
 class HallDetail(DetailView):
     model = Hall
     queryset = Hall.objects
-    template_name = 'hill_detail.html'
+    template_name = 'hill/hill_detail.html'
 
 
 class HallUpdate(UpdateView):
     model = Hall
     fields = ["room", "cinema_id", "seats", "volume"]
-    template_name = 'hill_update.html'
+    template_name = 'hill/hill_update.html'
 
 
 class HallDelete(DeleteView):
     model = Hall
-    success_url = "/"
-    template_name = 'hill_delete.html'
+    success_url = "hill/list/"
+    template_name = 'hill/hill_delete.html'
 
 
 # Session
 class SessionCreate(CreateView):
     model = Session
     fields = ["movie_id", "hall_id", "price", "time_start", "time_end"]
-    template_name = 'session_create.html'
+    template_name = 'session/session_create.html'
 
 
 class SessionList(ListView):
     model = Session
-    template_name = 'session_list.html'
+    template_name = 'session/session_list.html'
 
 
 class SessionDetail(DetailView):
     model = Session
     queryset = Session.objects
-    template_name = 'session_detail.html'
+    template_name = 'session/session_detail.html'
 
 
 class SessionUpdate(UpdateView):
     model = Session
     fields = ["movie_id", "hall_id", "price", "time_start", "time_end"]
-    template_name = 'session_update.html'
+    template_name = 'session/session_update.html'
 
 
 class SessionDelete(DeleteView):
     model = Session
-    success_url = "/"
-    template_name = 'session_delete.html'
+    success_url = "session/list/"
+    template_name = 'session/session_delete.html'

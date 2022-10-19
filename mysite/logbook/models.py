@@ -10,7 +10,6 @@ class Movie(models.Model):
     year = models.DateField()
     stars = models.IntegerField(validators=[MaxValueValidator(10), MinValueValidator(0)])
     descriptions = models.TextField(max_length=800)
-    pictures = models.TextField(max_length=800)
 
     def __str__(self):
         return f"Name: {self.name}"

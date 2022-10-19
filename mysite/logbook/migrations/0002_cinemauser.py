@@ -14,7 +14,7 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='CinemaUser',
+            name='cinemaUser',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('cinema_id', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='logbook.cinema')),

@@ -19,11 +19,11 @@ from .models import (Movie,
 class MovieForm(forms.Form):
     class Meta:
         cinema = Movie
-        fields = ("name", "year", "stars", "descriptions", "pictures")
+        fields = ("name", "year", "stars", "descriptions")
 
 
 
-# Cinema:
+# cinema:
 #  name
 #  descriptions
 #  city
@@ -35,7 +35,7 @@ class CinemaForm(forms.Form):
         cinema = Cinema
         fields = ("name", "descriptions", "city", "address")
 
-#CinemaUser
+#cinemaUser
 # cinema_id
 # user_id
 
@@ -51,7 +51,7 @@ class UserForm(forms.ModelForm):
         model = User
         fields = ('first_name', 'last_name', 'email')
 
-#  Hall
+#  hill
 # room
 # cinema_id
 # seats

@@ -1,11 +1,11 @@
+
 <ul>
     <!-- Iterate over object_list -->
     {% for object in object_list %}
     <!-- Display Objects -->
-    <h1>{{object.name}}</h1>
-    <li>year: {{object.year}}</li>
-    <li>stars: {{object.stars}}</li>
-    <li>descriptions: {{object.descriptions}}</li>
+    <li>{{object.cinema_id}}</li>
+    <li>{{object.user_id }}</li>
+
     <hr/>
     <!-- If object_list is empty  -->
     {% empty %}
