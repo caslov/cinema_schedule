@@ -154,3 +154,4 @@ class SessionDelete(DeleteView):
     model = Session
     success_url = "session/list/"
     template_name = 'session/session_delete.html'
+
