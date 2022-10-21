@@ -1,4 +1,5 @@
 <ul>
+    <a href="{% url 'Menu' %}session/create/">Session create</a>
     <!-- Iterate over object_list -->
     {% for object in object_list %}
     <!-- Display Objects -->
@@ -7,6 +8,9 @@
     <li>stars: {{object.price}}</li>
     <li>Start time: {{object.time_start}}</li>
     <li>End time: {{object.time_end}}</li>
+    <a href="{% url 'Menu' %}session/{{object.id}}/">Session detail</a>
+    <a href="{% url 'Menu' %}session/{{object.id}}/update/">Session update</a>
+    <a href="{% url 'Menu' %}session/{{object.id}}/delete/">Session delete</a>
     <hr/>
     <!-- If object_list is empty  -->
     {% empty %}

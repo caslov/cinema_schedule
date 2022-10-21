@@ -9,7 +9,7 @@ from .models import (Movie,
 # Movie
 class MovieCreate(CreateView):
     model = Movie
-    fields = ["name", "year", "stars", "descriptions"]
+    fields = ['id', "name", "year", "stars", "descriptions"]
     success_url = "list/"
     template_name = 'movie/movie_create.html'
 
@@ -28,7 +28,7 @@ class MovieDetail(DetailView):
 
 class MovieUpdate(UpdateView):
     model = Movie
-    fields = ["name", "year", "stars", "descriptions"]
+    fields = ['id', "name", "year", "stars", "descriptions"]
     success_url = "list/"
     template_name = 'movie/movie_update.html'
 
@@ -42,7 +42,7 @@ class MovieDelete(DeleteView):
 # cinemaUser
 class CinemaUserCreate(CreateView):
     model = CinemaUser
-    fields = ["cinema_id", "user_id"]
+    fields = ['id', "cinema_id", "user_id"]
     success_url = "list/"
     template_name = 'cinemaUser/cinema_user_create.html'
 
@@ -61,7 +61,7 @@ class CinemaUserDetail(DetailView):
 
 class CinemaUserUpdate(UpdateView):
     model = CinemaUser
-    fields = ["cinema_id", "user_id"]
+    fields = ["'id', cinema_id", "user_id"]
     success_url = "list/"
     template_name = 'cinemaUser/cinema_user_update.html'
 
@@ -75,7 +75,7 @@ class CinemaUserDelete(DeleteView):
 # cinema
 class CinemaCreate(CreateView):
     model = Cinema
-    fields = ["name", "descriptions", "city", "address"]
+    fields = ['id', "name", "descriptions", "city", "address"]
     success_url = "list/"
     template_name = 'cinema/cinema_create.html'
 
@@ -94,7 +94,7 @@ class CinemaDetail(DetailView):
 
 class CinemaUpdate(UpdateView):
     model = Cinema
-    fields = ["name", "descriptions", "city", "address"]
+    fields = ['id', "name", "descriptions", "city", "address"]
     success_url = "list/"
     template_name = 'cinema/cinema_update.html'
 
@@ -108,7 +108,7 @@ class CinemaDelete(DeleteView):
 # hill
 class HallCreate(CreateView):
     model = Hall
-    fields = ["room", "cinema_id", "seats", "volume"]
+    fields = ['id', "room", "cinema_id", "seats", "volume"]
     success_url = "list/"
     template_name = 'hill/hill_create.html'
 
@@ -126,7 +126,7 @@ class HallDetail(DetailView):
 
 class HallUpdate(UpdateView):
     model = Hall
-    fields = ["room", "cinema_id", "seats", "volume"]
+    fields = ['id', "room", "cinema_id", "seats", "volume"]
     success_url = "list/"
     template_name = 'hill/hill_update.html'
 
@@ -140,7 +140,7 @@ class HallDelete(DeleteView):
 # Session
 class SessionCreate(CreateView):
     model = Session
-    fields = ["movie_id", "hall_id", "price", "time_start", "time_end"]
+    fields = ['id', "movie_id", "hall_id", "price", "time_start", "time_end"]
     template_name = 'session/session_create.html'
     success_url = "list/"
 
@@ -158,7 +158,7 @@ class SessionDetail(DetailView):
 
 class SessionUpdate(UpdateView):
     model = Session
-    fields = ["movie_id", "hall_id", "price", "time_start", "time_end"]
+    fields = ['id', "movie_id", "hall_id", "price", "time_start", "time_end"]
     template_name = 'session/session_update.html'
     success_url = "list/"
 

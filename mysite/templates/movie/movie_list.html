@@ -1,4 +1,5 @@
 <ul>
+        <a href="{% url 'Menu' %}movie/create/">Movie create</a>
     <!-- Iterate over object_list -->
     {% for object in object_list %}
     <!-- Display Objects -->
@@ -6,6 +7,9 @@
     <li>year: {{object.year}}</li>
     <li>stars: {{object.stars}}</li>
     <li>descriptions: {{object.descriptions}}</li>
+    <a href="{% url 'Menu' %}movie/{{object.id}}/">Movie detail</a>
+    <a href="{% url 'Menu' %}movie/{{object.id}}/update/">Movie update</a>
+    <a href="{% url 'Menu' %}movie/{{object.id}}/delete/">Movie delete</a>
     <hr/>
     <!-- If object_list is empty  -->
     {% empty %}

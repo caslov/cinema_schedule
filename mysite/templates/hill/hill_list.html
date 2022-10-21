@@ -1,4 +1,5 @@
 <ul>
+        <a href="{% url 'Menu' %}hill/create/">Hall create</a>
     <!-- Iterate over object_list -->
     {% for object in object_list %}
     <!-- Display Objects -->
@@ -6,6 +7,9 @@
     <li>cinema_id: {{object.cinema_id}}</li>
     <li>seats: {{object.seats}}</li>
     <li>volume: {{object.volume}}</li>
+    <a href="{% url 'Menu' %}hall/{{object.id}}/">Hall detail</a>
+    <a href="{% url 'Menu' %}hall/{{object.id}}/update/">Hall update</a>
+    <a href="{% url 'Menu' %}hall/{{object.id}}/delete/">Hall delete</a>
     <hr/>
     <!-- If object_list is empty  -->
     {% empty %}
