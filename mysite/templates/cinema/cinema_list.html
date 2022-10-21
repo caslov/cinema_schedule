@@ -1,0 +1,19 @@
+<ul>
+    <a href="{% url 'Menu' %}cinema/create/">Сinema create</a>
+    <!-- Iterate over object_list -->
+    {% for object in object_list %}
+    <!-- Display Objects -->
+    <h1>{{object.name}}</h1>
+    <li>year: {{object.year}}</li>
+    <li>stars: {{object.stars}}</li>
+    <li>descriptions: {{object.descriptions}}</li>
+    <a href="{% url 'Menu' %}cinema/{{object.id}}/">Сinema detail</a>
+    <a href="{% url 'Menu' %}cinema/{{object.id}}/update/">Сinema update</a>
+    <a href="{% url 'Menu' %}cinema/{{object.id}}/delete/">Сinema delete</a>
+    <hr/>
+
+    <!-- If object_list is empty  -->
+    {% empty %}
+    <li>No objects yet.</li>
+    {% endfor %}
+</ul>
